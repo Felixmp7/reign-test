@@ -1,7 +1,8 @@
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import Header from './components/Header';
+import MainFilter from './components/MainFilter';
 import SelectFramework from './components/SelectFramework';
-import GlobalStyles from './globalStyles';
+import { globalTheme } from './globalStyles';
 
 const ContainerApp = styled.main`
     max-width: 1400px;
@@ -10,13 +11,13 @@ const ContainerApp = styled.main`
 
 function App() {
     return (
-        <>
-            <GlobalStyles />
+        <ThemeProvider theme={globalTheme}>
             <ContainerApp>
                 <Header />
+                <MainFilter />
                 <SelectFramework />
             </ContainerApp>
-        </>
+        </ThemeProvider>
     );
 }
 
