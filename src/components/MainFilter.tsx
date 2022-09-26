@@ -13,22 +13,24 @@ type SButtonProps = {
 
 const Button = styled.button<SButtonProps>`
     background: transparent;
-        width: 6.125rem;
-        height: 1.938rem;
-        font-family: Roboto;
-        font-size: 1rem;
-        font-weight: 500;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: 1.75;
-        letter-spacing: normal;
-        text-align: center;
-        color: ${({ isActive, theme }) => (isActive ? theme.azure : '#606060')};
-        border: 1px solid ${({ isActive, theme }) => (isActive ? theme.azure : '#d6d6d6')};
-        border-right: ${({ avoidRightBorder }) => (avoidRightBorder ? 0 : '')};
-        border-radius: ${({ avoidRightBorder }) => (avoidRightBorder
+    width: 6.125rem;
+    height: 1.938rem;
+    font-family: 'Roboto';
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.75;
+    letter-spacing: normal;
+    text-align: center;
+    color: ${({ isActive, theme }) => (isActive ? theme.azure : '#606060')};
+    border: 1px solid ${({ isActive, theme }) => (isActive ? theme.azure : '#d6d6d6')};
+    border-right: ${({ avoidRightBorder }) => (avoidRightBorder ? 0 : '')};
+    border-radius: ${({ avoidRightBorder }) => (avoidRightBorder
         ? '2px 0px 0px 2px'
-        : '2px')};
+        : '2px'
+    )};
 `;
 
 const MainFilter = () => {
