@@ -64,7 +64,6 @@ const ListItem = styled.li`
     display: flex;
     align-items: center;
     padding: 0.375rem 5.563rem 0.625rem 0.688rem;
-    font-family: 'Roboto';
     font-size: 0.875rem;
     font-weight: normal;
     font-stretch: normal;
