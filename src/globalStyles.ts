@@ -1,5 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
 
+export const globalTheme = {
+    azure: '#1797ff',
+};
+
 const GlobalStyle = createGlobalStyle`
     * {
         box-sizing: border-box;
