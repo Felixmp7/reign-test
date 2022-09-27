@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import useFiltersContext from 'hooks/useFiltersContext';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -8,7 +8,7 @@ const Container = styled.div`
 
 type SButtonProps = {
     isActive?: boolean,
-    avoidRightBorder?: boolean,
+    ignoreRightBorder?: boolean,
 }
 
 const Button = styled.button<SButtonProps>`
@@ -25,22 +25,35 @@ const Button = styled.button<SButtonProps>`
     text-align: center;
     color: ${({ isActive, theme }) => (isActive ? theme.azure : '#606060')};
     border: 1px solid ${({ isActive, theme }) => (isActive ? theme.azure : '#d6d6d6')};
-    border-right: ${({ avoidRightBorder }) => (avoidRightBorder ? 0 : '')};
-    border-radius: ${({ avoidRightBorder }) => (avoidRightBorder
+    border-right: ${({ ignoreRightBorder }) => (ignoreRightBorder ? 0 : '')};
+    border-radius: ${({ ignoreRightBorder }) => (ignoreRightBorder
         ? '2px 0px 0px 2px'
         : '2px'
     )};
 `;
 
 const MainFilter = () => {
-    const [isFavsActive, setIsFavsActive] = useState(false);
+    const { filtersState, setFiltersState } = useFiltersContext();
+
+    const handleSetFilterByFavs = (changeToFav: boolean) => {
+        setFiltersState({ ...filtersState, isFilteredByFavs: changeToFav });
+    };
 
     return (
         <Container>
-            <Button type="button" onClick={() => setIsFavsActive(false)} avoidRightBorder isActive={!isFavsActive}>
+            <Button
+                type="button"
+                onClick={() => handleSetFilterByFavs(false)}
+                ignoreRightBorder
+                isActive={!filtersState?.isFilteredByFavs}
+            >
                 All
             </Button>
-            <Button type="button" onClick={() => setIsFavsActive(true)} isActive={isFavsActive}>
+            <Button
+                type="button"
+                onClick={() => handleSetFilterByFavs(true)}
+                isActive={filtersState?.isFilteredByFavs}
+            >
                 My favs
             </Button>
         </Container>
