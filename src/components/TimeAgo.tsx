@@ -1,4 +1,5 @@
-import clockIcon from 'src/assets/clock-icon.svg';
+import { formatDistance } from 'date-fns';
+import clockIcon from 'assets/clock-icon.svg';
 import styled from 'styled-components';
 
 const ContainerTimeAgo = styled.span`
@@ -18,14 +19,23 @@ const ContainerTimeAgo = styled.span`
 `;
 
 type Props = {
-    timeAgo: string
+    createdAt: Date,
+    author: string,
 }
 
-const TimeAgo = ({ timeAgo }: Props) => (
-    <ContainerTimeAgo>
-        <img src={clockIcon} alt="clock icon" />
-        {`${timeAgo} by author`}
-    </ContainerTimeAgo>
-);
+const TimeAgo = ({ createdAt, author }: Props) => {
+    const timeAgo = formatDistance(
+        new Date(createdAt),
+        new Date(),
+        { addSuffix: true },
+    );
+
+    return (
+        <ContainerTimeAgo>
+            <img src={clockIcon} alt="clock icon" />
+            {`${timeAgo} by ${author}`}
+        </ContainerTimeAgo>
+    );
+};
 
 export default TimeAgo;
