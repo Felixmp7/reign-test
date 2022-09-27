@@ -17,7 +17,8 @@ const ContainerCard = styled.div`
     }
 
     > .card-info {
-        padding-top: 1rem;
+        padding: 1rem 1.625rem 1rem 0;
+        width: 100%;
     }
     > .like-button-container {
         width: 4.25rem;
@@ -33,15 +34,21 @@ const CardTitle = styled.span`
     line-height: 1.43;
     letter-spacing: 0.25px;
     color: ${({ theme }) => theme.brownishGray};
-    display: inline-block;
+    display: block;
 `;
 
-const Card = () => (
+type Props = {
+    createdAt: Date,
+    cardTitle: string
+    author: string
+}
+
+const Card = ({ createdAt, cardTitle, author }: Props) => (
     <ContainerCard>
         <div className="card-info">
-            <TimeAgo timeAgo="3 hours ago" />
+            <TimeAgo createdAt={createdAt} author={author} />
             <CardTitle>
-                Yes, React is taking over front-end development. The question is why.
+                {cardTitle || '-'}
             </CardTitle>
         </div>
         <div className="like-button-container">
