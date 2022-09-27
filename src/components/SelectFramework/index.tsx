@@ -1,10 +1,8 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components';
-import useClickOutside from 'src/hooks/useClickOutside';
-import angularIcon from 'src/assets/angular-icon.svg';
-import reactIcon from 'src/assets/react-icon.svg';
-import vueIcon from 'src/assets/vue-icon.svg';
+import useClickOutside from 'hooks/useClickOutside';
 import Option from './Option';
+import useFramework from './useFramework';
 
 const DropDownContainer = styled.div`
     width: 15rem;
@@ -50,6 +48,8 @@ const DropDownIndicatorContainer = styled.div`
 
 const DropDownList = styled.ul`
     padding: 0;
+    margin-top: .1rem;
+    margin-bottom: 0;
     width: 100%;
     box-shadow: 0 2px 2px 0 #dad8d8;
     background-color: #fff;
@@ -77,31 +77,18 @@ const ListItem = styled.li`
     }
 `;
 
-type Option = {
-    label: string,
-    value: string,
-    icon: string
-}
-
-const options: Option[] = [
-    { label: 'React', value: 'reactjs', icon: reactIcon },
-    { label: 'Angular', value: 'angular', icon: angularIcon },
-    { label: 'Vuejs', value: 'vuejs', icon: vueIcon },
-];
-
 const SelectFramework = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [framework, setFramework] = useState<Option | null>(null);
     const ref = useRef(null);
 
-    const toggleIsOpen = () => setIsOpen(!isOpen);
+    const {
+        framework,
+        frameworks,
+        isOpen,
+        onOptionClicked,
+        toggleIsOpen,
+    } = useFramework();
 
-    const onOptionClicked = (option: Option) => {
-        setFramework(option);
-        setIsOpen(false);
-    };
-
-    useClickOutside(ref, () => setIsOpen(false));
+    useClickOutside(ref, () => isOpen && toggleIsOpen);
 
     return (
         <DropDownContainer ref={ref}>
@@ -121,7 +108,7 @@ const SelectFramework = () => {
             </DropDownButton>
             {isOpen && (
                 <DropDownList>
-                    {options.map((option, index) => (
+                    {frameworks.map((option, index) => (
                         <ListItem key={index} onClick={() => onOptionClicked(option)}>
                             <Option icon={option.icon} alt={option.value} label={option.label} />
                         </ListItem>
