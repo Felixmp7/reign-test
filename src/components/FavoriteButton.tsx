@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import heartIcon from 'src/assets/heart-icon.svg';
-import heartFilledIcon from 'src/assets/heart-filled-icon.svg';
+import heartIcon from 'assets/heart-icon.svg';
+import heartFilledIcon from 'assets/heart-filled-icon.svg';
 import styled from 'styled-components';
 
 const LikeButton = styled.button`
