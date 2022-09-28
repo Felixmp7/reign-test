@@ -1,8 +1,6 @@
 import { eQuery } from 'services/api/interfaces';
-import { getFramework, saveFramework } from 'services/storage';
-import {
-    createContext, Dispatch, useMemo, useState, useEffect,
-} from 'react';
+import { createContext, Dispatch } from 'react';
+import useFiltersContext from './useFiltersContext';
 
 export type FiltersState = {
     isFilteredByFavs: boolean,
@@ -19,7 +17,7 @@ export interface FiltersContextProps {
 export const FiltersContext = createContext<FiltersContextProps>({
     filtersState: {
         currentFramework: null,
-        currentPage: 0,
+        currentPage: 1,
         totalPages: 0,
         isFilteredByFavs: false,
     },
@@ -31,21 +29,10 @@ type Props = {
 };
 
 const FiltersContextProvider = ({ children }: Props) => {
-    const [filtersState, setFiltersState] = useState<FiltersState>({
-        currentFramework: getFramework() as eQuery,
-        currentPage: 0,
-        totalPages: 0,
-        isFilteredByFavs: false,
-    });
-
-    const values = useMemo(() => ({ filtersState, setFiltersState }), [filtersState]);
-
-    useEffect(() => {
-        saveFramework(filtersState.currentFramework!);
-    }, [filtersState.currentFramework]);
+    const { contextValues } = useFiltersContext();
 
     return (
-        <FiltersContext.Provider value={values}>
+        <FiltersContext.Provider value={contextValues}>
             {children}
         </FiltersContext.Provider>
     );
