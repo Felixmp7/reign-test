@@ -17,6 +17,7 @@ const Main = styled.main`
     }
     > .pagination-position {
         margin-top: 4.375rem;
+        text-align: center;
     }
 `;
 
