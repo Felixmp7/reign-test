@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import useFiltersContext from 'hooks/useFiltersContext';
+import useFilters from 'hooks/useFilters';
 import { eQuery, IGetParams } from 'services/api/interfaces';
 import API from 'services/api';
 import useSWR from 'swr';
@@ -13,18 +13,21 @@ const fetchNews = (currentFramework: eQuery | null, currentPage: number) => {
 };
 
 const useNews = () => {
-    const { filtersState: { currentFramework, currentPage } } = useFiltersContext();
-    const {
-        data,
-        isValidating,
-        mutate,
-    } = useSWR('fetchNews', () => fetchNews(currentFramework, currentPage), {
+    const { filtersState, setFiltersState } = useFilters();
+
+    const handleFetchNews = async () => {
+        const news = await fetchNews(filtersState.currentFramework, filtersState.currentPage);
+        setFiltersState({ ...filtersState, totalPages: news.nbPages });
+        return news;
+    };
+
+    const { data, isValidating, mutate } = useSWR('fetchNews', handleFetchNews, {
         revalidateOnFocus: false,
     });
 
     useEffect(() => {
         mutate();
-    }, [currentFramework, currentPage, mutate]);
+    }, [filtersState.currentFramework, filtersState.currentPage, mutate]);
 
     return {
         news: data,
