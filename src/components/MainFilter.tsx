@@ -1,4 +1,4 @@
-import useFiltersContext from 'hooks/useFiltersContext';
+import useFilters from 'hooks/useFilters';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -33,7 +33,7 @@ const Button = styled.button<SButtonProps>`
 `;
 
 const MainFilter = () => {
-    const { filtersState, setFiltersState } = useFiltersContext();
+    const { filtersState, setFiltersState } = useFilters();
 
     const handleSetFilterByFavs = (changeToFav: boolean) => {
         setFiltersState({ ...filtersState, isFilteredByFavs: changeToFav });
