@@ -1,9 +1,10 @@
+import { getStoriesLiked } from 'services/storage';
 import styled from 'styled-components';
 import FavoriteButton from './FavoriteButton';
 import TimeAgo from './TimeAgo';
 
 const ContainerCard = styled.div`
-    width: 34.375rem;
+    width: 100%;
     height: 5.625rem;
     padding: 0 0 0 1.625rem;
     opacity: 0.8;
@@ -41,20 +42,30 @@ type Props = {
     createdAt: Date,
     cardTitle: string
     author: string
+    objectId: string,
 }
 
-const Card = ({ createdAt, cardTitle, author }: Props) => (
-    <ContainerCard>
-        <div className="card-info">
-            <TimeAgo createdAt={createdAt} author={author} />
-            <CardTitle>
-                {cardTitle || '-'}
-            </CardTitle>
-        </div>
-        <div className="like-button-container">
-            <FavoriteButton />
-        </div>
-    </ContainerCard>
-);
+const Card = ({
+    createdAt, cardTitle, author, objectId,
+}: Props) => {
+    const storiesLiked = getStoriesLiked();
+
+    return (
+        <ContainerCard>
+            <div className="card-info">
+                <TimeAgo createdAt={createdAt} author={author} />
+                <CardTitle>
+                    {cardTitle || '-'}
+                </CardTitle>
+            </div>
+            <div className="like-button-container">
+                <FavoriteButton
+                    objectId={objectId}
+                    isAlreadyLiked={storiesLiked?.includes(objectId) || false}
+                />
+            </div>
+        </ContainerCard>
+    );
+};
 
 export default Card;
