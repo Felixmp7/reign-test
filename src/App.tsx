@@ -1,3 +1,4 @@
+import Pagination from 'components/Pagination';
 import styled, { ThemeProvider } from 'styled-components';
 import Header from './components/Header';
 import MainFilter from './components/MainFilter';
@@ -14,6 +15,9 @@ const Main = styled.main`
         margin-top: 4.375rem;
         margin-bottom: 3.938rem;
     }
+    > .pagination-position {
+        margin-top: 4.375rem;
+    }
 `;
 
 const App = () => (
@@ -25,6 +29,9 @@ const App = () => (
                     <MainFilter />
                 </div>
                 <News />
+                <div className="pagination-position">
+                    <Pagination />
+                </div>
             </Main>
         </ThemeProvider>
     </FiltersContextProvider>
