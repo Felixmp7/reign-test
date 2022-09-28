@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import styled from 'styled-components';
 import useClickOutside from 'hooks/useClickOutside';
+import ChevronShape, { eChevronMode } from 'components/utils/ChevronShape';
 import Option from './Option';
 import useFramework from './useFramework';
 
@@ -33,17 +34,6 @@ const DropDownIndicatorContainer = styled.div`
     padding: 0.25rem 0.125rem 0.188rem;
     display: grid;
     place-content: center;
-
-    > .indicator {
-        border: solid black;
-        border-width: 0px 0px 1.5px 1.5px;
-        display: inline-block;
-        border-color: #2e2e2e;
-        padding: 0.219rem;
-        margin-bottom: 5px;
-        transform: rotate(-45deg);
-        -webkit-transform: rotate(-45deg);
-    }
 `;
 
 const DropDownList = styled.ul`
@@ -103,7 +93,7 @@ const SelectFramework = () => {
                     </div>
                 ) : 'Select your news'}
                 <DropDownIndicatorContainer>
-                    <div className="indicator" />
+                    <ChevronShape mode={eChevronMode.down} />
                 </DropDownIndicatorContainer>
             </DropDownButton>
             {isOpen && (
