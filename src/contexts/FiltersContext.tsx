@@ -8,6 +8,7 @@ export type FiltersState = {
     isFilteredByFavs: boolean,
     currentFramework: eQuery | null,
     currentPage: number,
+    totalPages: number,
 }
 
 export interface FiltersContextProps {
@@ -19,6 +20,7 @@ export const FiltersContext = createContext<FiltersContextProps>({
     filtersState: {
         currentFramework: null,
         currentPage: 0,
+        totalPages: 0,
         isFilteredByFavs: false,
     },
     setFiltersState: () => null,
@@ -32,6 +34,7 @@ const FiltersContextProvider = ({ children }: Props) => {
     const [filtersState, setFiltersState] = useState<FiltersState>({
         currentFramework: getFramework() as eQuery,
         currentPage: 0,
+        totalPages: 0,
         isFilteredByFavs: false,
     });
 
