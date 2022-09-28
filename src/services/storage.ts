@@ -12,12 +12,13 @@ export const saveFramework = (frameworkValue: string) => {
     localStorage.setItem(eStorageKeys.framework, frameworkValue);
 };
 
-export const getLikes = () => {
+export const getStoriesLiked = (): string[] | null => {
     const entry = localStorage.getItem(eStorageKeys.likes);
-    return entry;
+    if (entry) return JSON.parse(entry);
+    return null;
 };
 
-export const saveLikes = (likes: string[]) => {
-    const likesParsed = JSON.stringify(likes);
+export const saveStoriesLiked = (storyIds: string[]) => {
+    const likesParsed = JSON.stringify(storyIds);
     localStorage.setItem(eStorageKeys.likes, likesParsed);
 };
