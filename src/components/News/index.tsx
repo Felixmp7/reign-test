@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import useFiltersContext from 'hooks/useFiltersContext';
+import useFilters from 'hooks/useFilters';
 import { getStoriesLiked } from 'services/storage';
 import Card from './Card';
 import SelectFramework from '../SelectFramework';
@@ -17,7 +17,7 @@ const NewsGrid = styled.ul`
 `;
 
 const News = () => {
-    const { filtersState: { isFilteredByFavs } } = useFiltersContext();
+    const { filtersState: { isFilteredByFavs } } = useFilters();
     const currentStoriesLiked = getStoriesLiked() || [];
 
     const { news, isLoading } = useNews();

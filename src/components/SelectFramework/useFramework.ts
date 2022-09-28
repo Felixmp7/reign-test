@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import angularIcon from 'assets/angular-icon.svg';
 import reactIcon from 'assets/react-icon.svg';
 import vueIcon from 'assets/vue-icon.svg';
-import useFiltersContext from 'hooks/useFiltersContext';
+import useFilters from 'hooks/useFilters';
 import { eQuery } from 'services/api/interfaces';
 
 export type FrameworkOption = {
@@ -18,7 +18,7 @@ const frameworks: FrameworkOption[] = [
 ];
 
 const useFramework = () => {
-    const { filtersState, setFiltersState } = useFiltersContext();
+    const { filtersState, setFiltersState } = useFilters();
     const [isOpen, setIsOpen] = useState(false);
     const [framework, setFramework] = useState<FrameworkOption | null>(null);
 

@@ -1,12 +1,12 @@
 import { useContext } from 'react';
 import { FiltersContext } from 'contexts/FiltersContext';
 
-const useFiltersContext = () => {
+const useFilters = () => {
     const context = useContext(FiltersContext);
     if (context === undefined) {
-        throw new Error('useFiltersContext must be used inside a Context');
+        throw new Error('useFilters must be used inside a Context');
     }
     return context;
 };
 
-export default useFiltersContext;
+export default useFilters;
