@@ -33,6 +33,11 @@ const usePagination = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [page]);
 
+    useEffect(() => {
+        setPage(1);
+        setCurrentRange(0);
+    }, [filtersState.currentFramework]);
+
     return {
         page,
         totalPages: filtersState.totalPages,
