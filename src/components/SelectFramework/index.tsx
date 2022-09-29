@@ -7,6 +7,7 @@ import useFramework from './useFramework';
 
 const DropDownContainer = styled.div`
     width: 15rem;
+    position: relative;
 `;
 
 const DropDownButton = styled.button`
@@ -20,7 +21,6 @@ const DropDownButton = styled.button`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    cursor: pointer;
 
     > .framework-selected {
         display: flex;
@@ -37,13 +37,16 @@ const DropDownIndicatorContainer = styled.div`
 `;
 
 const DropDownList = styled.ul`
+    position: absolute;
     padding: 0;
-    margin-top: .1rem;
+    top: 1.5rem;
+    left: 0;
+    right: 0;
     margin-bottom: 0;
     width: 100%;
     box-shadow: 0 2px 2px 0 #dad8d8;
     background-color: #fff;
-    cursor: pointer;
+    z-index: 10;
 `;
 
 const ListItem = styled.li`
@@ -75,10 +78,11 @@ const SelectFramework = () => {
         frameworks,
         isOpen,
         onOptionClicked,
+        closeSelect,
         toggleIsOpen,
     } = useFramework();
 
-    useClickOutside(ref, () => isOpen && toggleIsOpen);
+    useClickOutside(ref, closeSelect);
 
     return (
         <DropDownContainer ref={ref}>
