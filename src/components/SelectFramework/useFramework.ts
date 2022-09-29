@@ -34,7 +34,7 @@ const useFramework = () => {
     const onOptionClicked = (option: FrameworkOption) => {
         if (option !== framework) {
             setFramework(option);
-            setFiltersState({ ...filtersState, currentFramework: option.value });
+            setFiltersState({ ...filtersState, currentPage: 1, currentFramework: option.value });
         }
         setIsOpen(false);
     };
@@ -49,6 +49,7 @@ const useFramework = () => {
         frameworks,
         framework,
         onOptionClicked,
+        closeSelect: () => setIsOpen(false),
         toggleIsOpen,
     };
 };
