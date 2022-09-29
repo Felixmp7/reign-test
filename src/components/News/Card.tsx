@@ -35,7 +35,12 @@ const CardTitle = styled.span`
     line-height: 1.43;
     letter-spacing: 0.25px;
     color: ${({ theme }) => theme.brownishGray};
-    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
 `;
 
 type Props = {
@@ -43,21 +48,22 @@ type Props = {
     cardTitle: string
     author: string
     objectId: string,
+    storyLink: string,
 }
 
 const Card = ({
-    createdAt, cardTitle, author, objectId,
+    createdAt, cardTitle, author, objectId, storyLink,
 }: Props) => {
     const storiesLiked = getStoriesLiked();
 
     return (
         <ContainerCard>
-            <div className="card-info">
+            <a href={storyLink} target="_blank" className="card-info" rel="noreferrer">
                 <TimeAgo createdAt={createdAt} author={author} />
                 <CardTitle>
                     {cardTitle || '-'}
                 </CardTitle>
-            </div>
+            </a>
             <div className="like-button-container">
                 <FavoriteButton
                     objectId={objectId}
