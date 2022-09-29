@@ -15,7 +15,6 @@ const Button = styled.button<SButtonProps>`
     background: transparent;
     width: 6.125rem;
     height: 1.938rem;
-    cursor: pointer;
     font-size: 1rem;
     font-weight: 500;
     font-stretch: normal;
