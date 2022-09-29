@@ -12,6 +12,12 @@ const ContainerTimeAgo = styled.span`
     line-height: normal;
     letter-spacing: normal;
     color: #767676;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     > img {
         margin-right: .5rem;
