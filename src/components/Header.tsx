@@ -1,3 +1,4 @@
+import { breakPoints, maxWidth } from 'globalStyles';
 import styled from 'styled-components';
 
 const HeaderStyled = styled.header`
@@ -7,7 +8,7 @@ const HeaderStyled = styled.header`
 
     > .max-width-container {
         font-family: 'Baskerville';
-        max-width: 71.25rem;
+        max-width: ${maxWidth};
         display: flex;
         align-items: center;
         height: 100%;
@@ -30,6 +31,11 @@ const HeaderStyled = styled.header`
             font-family: inherit;
             color: #c5c5c5;
             font-size: .75rem;
+        }
+
+        @media (max-width: ${breakPoints.laptop}) {
+            width: 100%;
+            padding: 0 2rem;
         }
     }
 
